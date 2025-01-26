@@ -17,9 +17,9 @@ async function initPyodide() {
 initPyodide();
 
 async function solveMaze() {
-    const input = document.getElementById('mazeInput');
+    const input = document.getElementById('fileInput');
     if (!input) {
-        console.error('Maze input element not found');
+        console.error('File input element not found');
         return;
     }
     const file = input.files[0];
@@ -29,6 +29,7 @@ async function solveMaze() {
     }
     // Rest of your solveMaze function...
 }
+
 
 
     const reader = new FileReader();
