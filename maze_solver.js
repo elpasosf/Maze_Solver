@@ -43,37 +43,25 @@ window.solveMaze = async function() {
 
             try {
                 const result = await pyodide.runPythonAsync(`
-                    import cv2
-                    import numpy as np
-                    from js import imageData
+    import cv2
+    import numpy as np
+    from pyodide import create_proxy
+    from js import ImageData
 
-                    def process_maze_image(image_data):
-                        # Convert image data to numpy array
-                        img_array = np.frombuffer(image_data.data, dtype=np.uint8)
-                        img_array = img_array.reshape((image_data.height, image_data.width, 4))
-                        
-                        # Convert to grayscale
-                        gray = cv2.cvtColor(img_array, cv2.COLOR_RGBA2GRAY)
-                        
-                        # Apply thresholding
-                        _, binary = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY_INV)
-                        
-                        # Find entrance and exit
-                        entrance, exit = find_entrance_exit(binary)
-                        
-                        # Solve maze
-                        path = solve_maze(binary, entrance, exit)
-                        
-                        # Draw solution
-                        solution = draw_solution(img_array, path, entrance, exit)
-                        
-                        return solution.tolist()
+    def process_maze_image(image_data):
+        # Convert image data to numpy array
+        img_array = np.frombuffer(image_data.data.to_py(), dtype=np.uint8)
+        img_array = img_array.reshape((image_data.height, image_data.width, 4))
+        
+        # Rest of your Python code...
 
-                    # Include your other functions here (find_entrance_exit, solve_maze, draw_solution)
+    # Include your other functions here (find_entrance_exit, solve_maze, draw_solution)
 
-                    solution = process_maze_image(imageData)
-                    solution
-                `);
+    image_data_proxy = create_proxy(imageData)
+    solution = process_maze_image(image_data_proxy)
+    solution
+`, { globals: { imageData: imageData } });
+
 
                 displaySolution(result);
             } catch (error) {
