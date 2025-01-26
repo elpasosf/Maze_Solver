@@ -81,7 +81,6 @@ async function solveMaze() {
         img.src = e.target.result;
     };
     reader.readAsDataURL(file);
-}
 
 function displaySolution(solutionData) {
     const canvas = document.createElement('canvas');
