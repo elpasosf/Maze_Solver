@@ -3,25 +3,11 @@ let pyodide;
 async function loadPyodide() {
     console.log('Starting Pyodide loading...');
     try {
-        pyodide = await loadPyodide();
+        pyodide = await loadPyodide({
+            indexURL: "https://cdn.jsdelivr.net/pyodide/v0.22.1/full/"
+        });
         console.log('Pyodide loaded successfully');
-
-        console.log('Loading numpy...');
-        await pyodide.loadPackage("numpy");
-        console.log('numpy loaded successfully');
-
-        console.log('Loading opencv-python...');
-        await pyodide.loadPackage("opencv-python");
-        console.log('opencv-python loaded successfully');
-
-        console.log('Installing additional packages...');
-        await pyodide.runPythonAsync(`
-            import micropip
-            await micropip.install('opencv-python')
-        `);
-        console.log('Additional packages installed successfully');
-
-        console.log('Pyodide setup complete');
+        // Rest of your loading code...
     } catch (error) {
         console.error('Error during Pyodide loading:', error);
     }
@@ -32,11 +18,18 @@ loadPyodide();
 
 async function solveMaze() {
     const input = document.getElementById('mazeInput');
+    if (!input) {
+        console.error('Maze input element not found');
+        return;
+    }
     const file = input.files[0];
     if (!file) {
         alert('Please select a maze image file.');
         return;
     }
+    // Rest of your solveMaze function...
+}
+
 
     const reader = new FileReader();
     reader.onload = async function(e) {
