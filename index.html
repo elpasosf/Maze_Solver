@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maze Solver</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/opencv.js/4.5.2/opencv.min.js"></script>
+    <script src="maze_solver.js"></script>
+</head>
+<body>
+    <h1>Maze Solver</h1>
+    <input type="file" id="fileInput" accept="image/*">
+    <button onclick="solveMaze()">Solve Maze</button>
+    <br><br>
+    <canvas id="outputCanvas"></canvas>
+    <br>
+    <a id="downloadLink" style="display: none;">Download Solved Maze</a>
+</body>
+</html>
