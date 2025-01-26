@@ -4,8 +4,11 @@ from queue import Queue
 
 def process_maze_image(image_data):
     # Convert image data to numpy array
-    img_array = np.frombuffer(image_data.data, dtype=np.uint8)
+    img_array = np.frombuffer(image_data.data.to_py(), dtype=np.uint8)
     img_array = img_array.reshape((image_data.height, image_data.width, 4))
+    
+    # Rest of your Python code...
+
     
     # Convert to grayscale
     gray = cv2.cvtColor(img_array, cv2.COLOR_RGBA2GRAY)
