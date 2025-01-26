@@ -1,20 +1,20 @@
 let pyodide;
 
-async function loadPyodide() {
+async function initPyodide() {
     console.log('Starting Pyodide loading...');
     try {
         pyodide = await loadPyodide({
             indexURL: "https://cdn.jsdelivr.net/pyodide/v0.22.1/full/"
         });
         console.log('Pyodide loaded successfully');
-        // Rest of your loading code...
+        // Load additional packages if needed
+        await pyodide.loadPackage(['numpy', 'opencv-python']);
     } catch (error) {
         console.error('Error during Pyodide loading:', error);
     }
 }
 
-
-loadPyodide();
+initPyodide();
 
 async function solveMaze() {
     const input = document.getElementById('mazeInput');
