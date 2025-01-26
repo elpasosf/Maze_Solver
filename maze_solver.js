@@ -39,11 +39,6 @@ window.solveMaze = function() {
         alert('Please select a maze image file.');
         return;
     }
-    // Rest of your solveMaze function...
-}
-
-
-
     const reader = new FileReader();
     reader.onload = async function(e) {
         const img = new Image();
@@ -94,6 +89,7 @@ window.solveMaze = function() {
     };
     reader.readAsDataURL(file);
 };
+
 
 
 
