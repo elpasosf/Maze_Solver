@@ -1,5 +1,20 @@
 let pyodide;
 
+window.solveMaze = function() {
+    const input = document.getElementById('fileInput');
+    if (!input) {
+        console.error('File input element not found');
+        return;
+    }
+    const file = input.files[0];
+    if (!file) {
+        alert('Please select a maze image file.');
+        return;
+    }
+    // Rest of your solveMaze function...
+};
+
+
 async function initPyodide() {
     console.log('Starting Pyodide loading...');
     try {
@@ -15,20 +30,6 @@ async function initPyodide() {
 }
 
 initPyodide();
-
-window.solveMaze = function() {
-    const input = document.getElementById('fileInput');
-    if (!input) {
-        console.error('File input element not found');
-        return;
-    }
-    const file = input.files[0];
-    if (!file) {
-        alert('Please select a maze image file.');
-        return;
-    }
-    // Rest of your solveMaze function...
-};
 
 
 async function solveMaze() {
