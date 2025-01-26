@@ -1,14 +1,32 @@
 let pyodide;
 
 async function loadPyodide() {
-    pyodide = await loadPyodide();
-    await pyodide.loadPackage("numpy");
-    await pyodide.loadPackage("opencv-python");
-    await pyodide.runPythonAsync(`
-        import micropip
-        await micropip.install('opencv-python')
-    `);
+    console.log('Starting Pyodide loading...');
+    try {
+        pyodide = await loadPyodide();
+        console.log('Pyodide loaded successfully');
+
+        console.log('Loading numpy...');
+        await pyodide.loadPackage("numpy");
+        console.log('numpy loaded successfully');
+
+        console.log('Loading opencv-python...');
+        await pyodide.loadPackage("opencv-python");
+        console.log('opencv-python loaded successfully');
+
+        console.log('Installing additional packages...');
+        await pyodide.runPythonAsync(`
+            import micropip
+            await micropip.install('opencv-python')
+        `);
+        console.log('Additional packages installed successfully');
+
+        console.log('Pyodide setup complete');
+    } catch (error) {
+        console.error('Error during Pyodide loading:', error);
+    }
 }
+
 
 loadPyodide();
 
