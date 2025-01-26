@@ -105,3 +105,4 @@ def draw_solution(image, path, start, end):
     return solution_image
 
 # The main execution is now handled by the process_maze_image function
+.nojekyll
